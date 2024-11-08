@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.main-menu {
+  background: #212121; /* Fondo oscuro */
+  border-right: 1px solid #fffb00; /* Borde derecho */
+  position: fixed; /* Asegúrate de que el sidebar esté fijo en la pantalla */
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 200px; /* Ancho del sidebar */
+  height: 100%; /* Altura completa */
+  overflow-y: auto; /* Permite el desplazamiento si es necesario */
+  z-index: 1000; /* Asegúrate de que esté en el frente */
+  padding-top: 20px; /* Espacio superior para el usuario */
+}
+
+.user-info {
+  display: flex; /* Usar flexbox para alinear la imagen y el nombre */
+  align-items: center; /* Centrar verticalmente */
+  padding: 0 15px; /* Espaciado interno */
+  margin-bottom: 20px; /* Espaciado inferior */
+}
+
+.user-image {
+  width: 50px; /* Ancho de la imagen del usuario */
+  height: 50px; /* Altura de la imagen del usuario */
+  border-radius: 50%; /* Hacer que la imagen sea circular */
+  margin-right: 10px; /* Espacio entre la imagen y el nombre */
+}
+
+.user-name {
+  color: #fbff03; /* Color del nombre del usuario */
+  font-size: 16px; /* Tamaño de fuente del nombre */
+  margin: 0; /* Eliminar márgenes */
+}
+
+.main-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.main-menu li {
+  display: block;
+}
+
+.main-menu li a {
+  color: #fbff03; /* Color del texto */
+  font-size: 14px; /* Tamaño de fuente */
+  text-decoration: none; /* Sin subrayado */
+  padding: 22px 15px; /* Espaciado interno */
+  display: flex; /* Cambia a flex para alinear íconos y texto */
+  align-items: center; /* Centrar verticalmente */
+  transition: color .1s linear, background-color .1s linear; /* Efecto de transición */
+}
+
+.main-menu li a i {
+  margin-right: 10px; /* Espacio entre el ícono y el texto */
+}
+
+.main-menu li:hover > a {
+  color: #fff; /* Color del texto al pasar el mouse */
+  background-color: #000; /* Color de fondo al pasar el mouse */
+}
+
+/* Color de los íconos */
+.icon-color {
+  color: #f1f1f1; /* Cambia este valor al color que desees para los íconos */
+}
+
+.logout {
+  position: absolute;
+  bottom: 20px; /* Alinea el área de logout al fondo */
+  width: 100%; /* Asegúrate de que ocupe todo el ancho */
+}
+
