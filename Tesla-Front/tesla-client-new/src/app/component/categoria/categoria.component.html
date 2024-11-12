@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de Categorías</title>
+  </head>
+  <body>
+    <div class="background-image"></div>
+
+    <div class="container-fluid text-center d-flex align-items-center justify-content-center">
+      <!-- Contenedor para Carga de Categorías -->
+      <div class="carga-container">
+        <h2 class="carga-title">Carga de Categorías</h2>
+        <form #categoryForm="ngForm" (ngSubmit)="onSubmitCategoria()">
+          <div class="form-group">
+            <label for="categoryName">Nombre de la Categoría</label>
+            <input
+              type="text"
+              id="categoryName"
+              class="form-control"
+              [(ngModel)]="categoria.categoria"
+              name="categoryName"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="categoryDescription">Descripción</label>
+            <textarea
+              id="categoryDescription"
+              class="form-control"
+              [(ngModel)]="categoria.descripcion"
+              name="categoryDescription"
+              required
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="btn carga-button"
+            [disabled]="categoryForm.invalid || !categoria.categoria || !categoria.descripcion"
+          >
+            Agregar Categoría
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

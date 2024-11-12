@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de Categorías</title>
+  </head>
+  <body>
+    <div class="background-image"></div>
+
+    <div class="container-fluid text-center d-flex align-items-center justify-content-center">
+      <!-- Contenedor para Lista de Categorías -->
+      <div class="carga-container">
+        <h2 class="carga-title">Lista de Categorías</h2>
+
+        <!-- Verificar si hay categorías disponibles -->
+        <div *ngIf="categorias.length === 0" class="no-categorias">
+          <p class="text-center">No hay categorías disponibles</p>
+        </div>
+
+        <!-- Tabla de Categorías -->
+        <table *ngIf="categorias.length > 0">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let categoria of categorias">
+              <td>{{ categoria.categoria }}</td>
+              <td>{{ categoria.descripcion }}</td>
+              <td>
+                <!-- Botones de Acción -->
+                <button class="btn" (click)="editarCategoria(categoria)">Editar</button>
+                <button class="btn" (click)="eliminarCategoria(categoria.id)">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Modal de Edición -->
+    <div *ngIf="showModal" class="modal">
+      <div class="modal-content">
+        <h2>Editar Categoría</h2>
+        <form (ngSubmit)="guardarCategoria()">
+          <div class="form-group">
+            <label for="categoryName">Nombre de la Categoría</label>
+            <input
+              type="text"
+              id="categoryName"
+              class="form-control"
+              [(ngModel)]="categoriaEditada.categoria"
+              name="categoryName"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="categoryDescription">Descripción</label>
+            <textarea
+              id="categoryDescription"
+              class="form-control"
+              [(ngModel)]="categoriaEditada.descripcion"
+              name="categoryDescription"
+              required
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="btn carga-button"
+            [disabled]="!categoriaEditada.categoria || !categoriaEditada.descripcion"
+          >
+            Guardar Cambios
+          </button>
+          <button type="button" class="btn" (click)="cerrarModal()">Cancelar</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
