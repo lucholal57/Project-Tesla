@@ -1,0 +1,7 @@
+<div *ngIf="shouldShowSidebar()" class="sidebar">
+  <app-sidebar></app-sidebar>
+</div>
+
+<div class="content">
+  <router-outlet></router-outlet> <!-- Este es el contenedor donde se renderizan las rutas -->
+</div>
