@@ -1,83 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gestión de Categorías</title>
-  </head>
-  <body>
-    <div class="background-image"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestión de Categorías</title>
+</head>
+<body>
+  <div class="background-image"></div>
 
-    <div class="container-fluid text-center d-flex align-items-center justify-content-center">
-      <!-- Contenedor para Lista de Categorías -->
-      <div class="carga-container">
-        <h2 class="carga-title">Lista de Categorías</h2>
+  <div class="container-fluid text-center d-flex align-items-center justify-content-center">
+    <div class="carga-container">
+      <h2 class="carga-title">Lista de Categorías</h2>
 
-        <!-- Verificar si hay categorías disponibles -->
-        <div *ngIf="categorias.length === 0" class="no-categorias">
-          <p class="text-center">No hay categorías disponibles</p>
+      <!-- Mensaje si no hay categorías -->
+      <div *ngIf="categorias.length === 0" class="no-categorias">
+        <p class="text-center">No hay categorías disponibles</p>
+      </div>
+
+      <!-- Tabla de Categorías -->
+      <table *ngIf="categorias.length > 0">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let categoria of categorias">
+            <td>{{ categoria.categoria }}</td>
+            <td>{{ categoria.descripcion }}</td>
+            <td>
+              <button class="btn" (click)="editarCategoria(categoria)">Editar</button>
+              <button class="btn" (click)="eliminarCategoria(categoria.id)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal de Edición con Formulario Reactivo -->
+  <div *ngIf="showModal" class="modal">
+    <div class="modal-content">
+      <h2>Editar Categoría</h2>
+      <form [formGroup]="editForm" (ngSubmit)="guardarCategoria()">
+        <div class="form-group">
+          <label for="categoryName">Nombre de la Categoría</label>
+          <input
+            type="text"
+            id="categoryName"
+            class="form-control"
+            formControlName="categoria"
+          />
+          <div *ngIf="editForm.get('categoria')?.invalid && editForm.get('categoria')?.touched" class="text-danger">
+            El nombre de la categoría es requerido.
+          </div>
         </div>
-
-        <!-- Tabla de Categorías -->
-        <table *ngIf="categorias.length > 0">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Descripción</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let categoria of categorias">
-              <td>{{ categoria.categoria }}</td>
-              <td>{{ categoria.descripcion }}</td>
-              <td>
-                <!-- Botones de Acción -->
-                <button class="btn" (click)="editarCategoria(categoria)">Editar</button>
-                <button class="btn" (click)="eliminarCategoria(categoria.id)">Eliminar</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Modal de Edición -->
-    <div *ngIf="showModal" class="modal">
-      <div class="modal-content">
-        <h2>Editar Categoría</h2>
-        <form (ngSubmit)="guardarCategoria()">
-          <div class="form-group">
-            <label for="categoryName">Nombre de la Categoría</label>
-            <input
-              type="text"
-              id="categoryName"
-              class="form-control"
-              [(ngModel)]="categoriaEditada.categoria"
-              name="categoryName"
-              required
-            />
+        <div class="form-group">
+          <label for="categoryDescription">Descripción</label>
+          <textarea
+            id="categoryDescription"
+            class="form-control"
+            formControlName="descripcion"
+          ></textarea>
+          <div *ngIf="editForm.get('descripcion')?.invalid && editForm.get('descripcion')?.touched" class="text-danger">
+            La descripción es requerida.
           </div>
-          <div class="form-group">
-            <label for="categoryDescription">Descripción</label>
-            <textarea
-              id="categoryDescription"
-              class="form-control"
-              [(ngModel)]="categoriaEditada.descripcion"
-              name="categoryDescription"
-              required
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            class="btn carga-button"
-            [disabled]="!categoriaEditada.categoria || !categoriaEditada.descripcion"
-          >
-            Guardar Cambios
-          </button>
-          <button type="button" class="btn" (click)="cerrarModal()">Cancelar</button>
-        </form>
-      </div>
+        </div>
+        <button type="submit" class="btn carga-button" [disabled]="editForm.invalid">Guardar Cambios</button>
+        <button type="button" class="btn" (click)="cerrarModal()">Cancelar</button>
+      </form>
     </div>
-  </body>
+  </div>
+</body>
 </html>

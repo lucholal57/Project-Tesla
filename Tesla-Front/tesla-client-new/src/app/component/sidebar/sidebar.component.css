@@ -6,34 +6,42 @@ body {
 .main-menu {
   background: #212121; /* Fondo oscuro */
   border-right: 1px solid #fffb00; /* Borde derecho */
-  position: fixed; /* Asegúrate de que el sidebar esté fijo en la pantalla */
+  position: fixed; /* Sidebar fijo */
   top: 0;
   bottom: 0;
   left: 0;
-  width: 200px; /* Ancho del sidebar */
+  width: 150px; /* Ancho del sidebar */
   height: 100%; /* Altura completa */
-  overflow-y: auto; /* Permite el desplazamiento si es necesario */
-  z-index: 1000; /* Asegúrate de que esté en el frente */
-  padding-top: 20px; /* Espacio superior para el usuario */
+  overflow-y: auto; /* Desplazamiento si es necesario */
+  z-index: 1000; /* En frente */
+  padding-top: 20px; /* Espacio superior general */
+  display: flex;
+  flex-direction: column; /* Organizar contenido en columna */
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center; /* Centra la imagen */
+  margin-bottom: 20px; /* Espacio debajo del logo */
+}
+
+.logo {
+  width: 50px; /* Ancho del logo */
+  height: 50px; /* Altura del logo */
+  border-radius: 50%; /* Hacer que el logo sea circular */
 }
 
 .user-info {
-  display: flex; /* Usar flexbox para alinear la imagen y el nombre */
-  align-items: center; /* Centrar verticalmente */
-  padding: 0 15px; /* Espaciado interno */
-  margin-bottom: 20px; /* Espaciado inferior */
-}
-
-.user-image {
-  width: 50px; /* Ancho de la imagen del usuario */
-  height: 50px; /* Altura de la imagen del usuario */
-  border-radius: 50%; /* Hacer que la imagen sea circular */
-  margin-right: 10px; /* Espacio entre la imagen y el nombre */
+  display: flex;
+  flex-direction: column; /* Coloca el nombre debajo de la imagen */
+  align-items: center; /* Centra el texto */
+  margin-top: auto; /* Mueve el texto de "Bienvenido" hacia abajo */
+  padding-bottom: 20px; /* Espaciado inferior */
 }
 
 .user-name {
-  color: #fbff03; /* Color del nombre del usuario */
-  font-size: 16px; /* Tamaño de fuente del nombre */
+  color: #fbff03; /* Color del nombre */
+  font-size: 16px; /* Tamaño de fuente */
   margin: 0; /* Eliminar márgenes */
 }
 
@@ -41,6 +49,7 @@ body {
   margin: 0;
   padding: 0;
   list-style: none;
+  flex-grow: 1; /* Deja que el menú ocupe el espacio restante */
 }
 
 .main-menu li {
@@ -48,32 +57,30 @@ body {
 }
 
 .main-menu li a {
-  color: #fbff03; /* Color del texto */
-  font-size: 14px; /* Tamaño de fuente */
-  text-decoration: none; /* Sin subrayado */
-  padding: 22px 15px; /* Espaciado interno */
-  display: flex; /* Cambia a flex para alinear íconos y texto */
-  align-items: center; /* Centrar verticalmente */
-  transition: color .1s linear, background-color .1s linear; /* Efecto de transición */
+  color: #fbff03;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 22px 15px;
+  display: flex;
+  align-items: center;
+  transition: color .1s linear, background-color .1s linear;
 }
 
 .main-menu li a i {
-  margin-right: 10px; /* Espacio entre el ícono y el texto */
+  margin-right: 10px;
 }
 
 .main-menu li:hover > a {
-  color: #fff; /* Color del texto al pasar el mouse */
-  background-color: #000; /* Color de fondo al pasar el mouse */
+  color: #fff;
+  background-color: #000;
 }
 
-/* Color de los íconos */
 .icon-color {
-  color: #f1f1f1; /* Cambia este valor al color que desees para los íconos */
+  color: #f1f1f1;
 }
 
 .logout {
   position: absolute;
-  bottom: 20px; /* Alinea el área de logout al fondo */
-  width: 100%; /* Asegúrate de que ocupe todo el ancho */
+  bottom: 20px;
+  width: 100%;
 }
-

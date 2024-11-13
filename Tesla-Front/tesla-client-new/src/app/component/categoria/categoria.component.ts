@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { CategoriaService } from '../../servicio/categoria.service';
 import { Categoria } from '../../entidad/categoria';
 import { RouterModule } from '@angular/router';
@@ -10,27 +11,36 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './categoria.component.html',
   styleUrls: ['./categoria.component.css'],
   standalone: true,  // Hacer este componente standalone
-  imports: [RouterModule, CommonModule,FormsModule]
+  imports: [RouterModule, CommonModule,ReactiveFormsModule]
 })
 export class CategoriaComponent implements OnInit {
-  categoria: Categoria = { id: 0, categoria: '', descripcion: '' };  // No enviar id en la creación
+  categoryForm: FormGroup;
 
-  constructor(private categoriaService:CategoriaService) { }
+  constructor(private formBuilder: FormBuilder,
+    private categoriaService: CategoriaService) {
+      // Inicializamos el formulario con validaciones
+    this.categoryForm = this.formBuilder.group({
+      categoria: ['', Validators.required],
+      descripcion: ['', Validators.required]
+    });
+    }
 
   ngOnInit() {
   }
 
-  onSubmitCategoria(): void {
-    if (this.categoria.categoria && this.categoria.descripcion) {
-      this.categoriaService.postCategoria(this.categoria).subscribe({
+  onSubmit(): void {
+    if (this.categoryForm.valid) {
+      const nuevaCategoria = this.categoryForm.value;  // Obtener valores del formulario
+
+      this.categoriaService.postCategoria(nuevaCategoria).subscribe({
         next: (response) => {
           alert('Categoría agregada correctamente');
-          this.categoria = { id: 0 ,categoria: '', descripcion: '' }; // Limpiar formulario
+          this.categoryForm.reset(); // Limpiar formulario
         },
         error: (error) => {
           console.error('Error al agregar categoría', error);
           alert('Error al agregar la categoría');
-        },
+        }
       });
     } else {
       alert('Por favor, completa todos los campos');
