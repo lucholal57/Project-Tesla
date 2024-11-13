@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { Usuario } from '../../entidad/usuario';
 import { AuthService } from '../../servicio/auth.service';
@@ -11,49 +12,52 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   standalone: true,  // Hacer este componente standalone
-  imports: [RouterModule, CommonModule,FormsModule]
+  imports: [RouterModule, CommonModule, ReactiveFormsModule]
 })
 export class LoginComponent implements OnInit {
-  public get authService(): AuthService {
-    return this._authService;
-  }
-  public set authService(value: AuthService) {
-    this._authService = value;
-  }
+
+  loginForm: FormGroup; // Definimos el formulario reactivo
 
   showSidebar = false; // O usar una condición más compleja
 
-  usuario: Usuario = { username: '', password: '' };  // Usa la entidad
 
-  constructor(private _authService: AuthService,private router: Router) { }
+  constructor(private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router) {
+    // Inicializamos el formulario con validaciones
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
 
   ngOnInit() {
     this.showSidebar = false;
   }
 
   onSubmit() {
-    this.authService.login(this.usuario).subscribe({
-      next: (response) => {
-        if (response) {
-          alert(`Bienvenido a Usuario: ${response.username}`);
-          console.log('Redirigiendo a la página de productos...');
-          this.router.navigate(['cargar-productos']);
-        } else {
-          alert('Usuario o contraseña incorrectos');
-          this.reset();
-        }
-      },
-      error: (error) => {
-        console.error('Error en la autenticación', error);
-        alert('Error al intentar iniciar sesión');
-        this.reset();
-      }
-    });
-  }
+    if (this.loginForm.valid) {
+      const usuario = this.loginForm.value;  // Obtener valores del formulario
 
-  reset(){
-    this.usuario.username='';
-    this.usuario.password='';
+      this.authService.login(usuario).subscribe({
+        next: (response) => {
+          if (response) {
+            alert(`Bienvenido, ${response.username}`);
+            this.router.navigate(['cargar-productos']);
+          } else {
+            alert('Usuario o contraseña incorrectos');
+            this.loginForm.reset(); // Reiniciar formulario
+          }
+        },
+        error: (error) => {
+          console.error('Error en la autenticación', error);
+          alert('Error al intentar iniciar sesión');
+          this.loginForm.reset(); // Reiniciar formulario en caso de error
+        }
+      });
+    } else {
+      alert('Por favor, completa todos los campos correctamente.');
+    }
   }
 
 }

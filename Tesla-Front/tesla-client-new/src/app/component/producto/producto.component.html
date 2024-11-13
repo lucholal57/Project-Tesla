@@ -12,77 +12,104 @@
       <!-- Contenedor para Carga de Productos -->
       <div class="carga-container">
         <h2 class="carga-title">Carga de Productos</h2>
-        <form #productForm="ngForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="productoForm" (ngSubmit)="onSubmit()">
+          <!-- Nombre del Producto -->
           <div class="form-group">
             <label for="productName">Nombre del Producto</label>
             <input
               type="text"
               id="productName"
               class="form-control"
-              [(ngModel)]="producto.nombre"
-              name="productName"
-              required
+              formControlName="nombre"
             />
+            <div *ngIf="productoForm.get('nombre')?.invalid && productoForm.get('nombre')?.touched" class="text-danger">
+              El nombre es requerido.
+            </div>
           </div>
+
+          <!-- Código del Producto -->
+          <div class="form-group">
+            <label for="productCode">Código de Barras</label>
+            <input
+              type="text"
+              id="productCode"
+              class="form-control"
+              formControlName="codigo"
+              pattern="^[0-9]*$"
+            />
+            <div *ngIf="productoForm.get('codigo')?.invalid && productoForm.get('codigo')?.touched" class="text-danger">
+              El código de barras debe contener solo números.
+            </div>
+          </div>
+
+          <!-- Precio del Producto -->
           <div class="form-group">
             <label for="productPrice">Precio del Producto</label>
             <input
               type="number"
               id="productPrice"
               class="form-control"
-              [(ngModel)]="producto.precioUnitario"
-              name="productPrice"
-              required
-              min="1"
+              formControlName="precio"
             />
+            <div *ngIf="productoForm.get('precio')?.invalid && productoForm.get('precio')?.touched" class="text-danger">
+              Ingresa un precio válido mayor a cero.
+            </div>
           </div>
+
+          <!-- Descripción del Producto -->
           <div class="form-group">
             <label for="productDescription">Descripción</label>
             <textarea
               id="productDescription"
               class="form-control"
-              [(ngModel)]="producto.descripcion"
-              name="productDescription"
-              required
+              formControlName="descripcion"
             ></textarea>
+            <div *ngIf="productoForm.get('descripcion')?.invalid && productoForm.get('descripcion')?.touched" class="text-danger">
+              La descripción es requerida.
+            </div>
           </div>
+
+          <!-- Stock del Producto -->
           <div class="form-group">
             <label for="productStock">Stock</label>
             <input
               type="number"
               id="productStock"
               class="form-control"
-              [(ngModel)]="producto.stock"
-              name="productStock"
-              required
-              min="1"
+              formControlName="stock"
             />
+            <div *ngIf="productoForm.get('stock')?.invalid && productoForm.get('stock')?.touched" class="text-danger">
+              Ingresa un valor de stock válido.
+            </div>
           </div>
+
+          <!-- Categoría del Producto -->
           <div class="form-group">
             <label for="productCategory">Categoría</label>
             <select
               id="productCategory"
               class="form-control"
-              [(ngModel)]="producto.categoria"
-              name="productCategory"
-              required
+              formControlName="categoria"
             >
-              <option value="" disabled selected>Selecciona una categoría</option>
-              <option *ngFor="let categoria of categorias" [value]="categoria.categoria">
+              <option value="" disabled>Selecciona una categoría</option>
+              <option *ngFor="let categoria of categorias" [ngValue]="categoria">
                 {{ categoria.categoria }} - {{ categoria.descripcion }}
               </option>
             </select>
+            <div *ngIf="productoForm.get('categoria')?.invalid && productoForm.get('categoria')?.touched" class="text-danger">
+              Selecciona una categoría.
+            </div>
           </div>
+
+          <!-- Botón de envío -->
           <button
             type="submit"
             class="btn carga-button"
-            [disabled]="productForm.invalid || producto.precioUnitario <= 0 || producto.stock <= 0"
+            [disabled]="productoForm.invalid"
           >
             Agregar Producto
           </button>
         </form>
-
-
       </div>
     </div>
   </body>

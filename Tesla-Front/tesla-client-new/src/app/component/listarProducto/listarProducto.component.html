@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestión de Productos</title>
+</head>
+<body>
+  <div class="background-image"></div>
+
+  <div class="container-fluid text-center d-flex align-items-center justify-content-center">
+    <div class="carga-container">
+      <h2 class="carga-title">Lista de Productos</h2>
+
+      <!-- Mensaje si no hay productos -->
+      <div *ngIf="productos.length === 0" class="no-productos">
+        <p class="text-center">No hay productos disponibles</p>
+      </div>
+
+      <!-- Tabla de Productos -->
+      <table *ngIf="productos.length > 0">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Código</th>
+            <th>Descripción</th>
+            <th>Stock</th>
+            <th>Precio</th>
+            <th>Categoría - Descripcion</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let producto of productos">
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.codigo }}</td>
+            <td>{{ producto.descripcion }}</td>
+            <td>{{ producto.stock }}</td>
+            <td>{{ producto.precio | currency }}</td>
+            <td>{{ producto.categoria.categoria }} {{ producto.categoria.descripcion }}</td> <!-- Mostrar nombre de la categoría -->
+            <td>
+              <button class="btn" (click)="editarProducto(producto)">Editar</button>
+              <button class="btn" (click)="eliminarProducto(producto.id)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal de Edición con Formulario Reactivo -->
+  <div *ngIf="showModal" class="modal">
+    <div class="modal-content">
+      <h2>Editar Producto</h2>
+      <form [formGroup]="editForm" (ngSubmit)="guardarProducto()">
+        <div class="form-group">
+          <label for="productName">Nombre del Producto</label>
+          <input
+            type="text"
+            id="productName"
+            class="form-control"
+            formControlName="nombre"
+          />
+          <div *ngIf="editForm.get('nombre')?.invalid && editForm.get('nombre')?.touched" class="text-danger">
+            El nombre del producto es requerido.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="productCode">Código de Barras</label>
+          <input
+            type="text"
+            id="productCode"
+            class="form-control"
+            formControlName="codigo"
+          />
+          <div *ngIf="editForm.get('codigo')?.invalid && editForm.get('codigo')?.touched" class="text-danger">
+            El código de barras es requerido y debe ser solo numérico.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="productDescription">Descripción</label>
+          <textarea
+            id="productDescription"
+            class="form-control"
+            formControlName="descripcion"
+          ></textarea>
+          <div *ngIf="editForm.get('descripcion')?.invalid && editForm.get('descripcion')?.touched" class="text-danger">
+            La descripción es requerida.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="productStock">Stock</label>
+          <input
+            type="number"
+            id="productStock"
+            class="form-control"
+            formControlName="stock"
+            min="1"
+          />
+          <div *ngIf="editForm.get('stock')?.invalid && editForm.get('stock')?.touched" class="text-danger">
+            El stock debe ser un número mayor a 0.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="productPrice">Precio</label>
+          <input
+            type="number"
+            id="productPrice"
+            class="form-control"
+            formControlName="precio"
+            min="0"
+          />
+          <div *ngIf="editForm.get('precio')?.invalid && editForm.get('precio')?.touched" class="text-danger">
+            El precio debe ser un número mayor o igual a 0.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="productCategory">Categoría</label>
+          <select id="productCategory" class="form-control" formControlName="categoria">
+            <option value="" disabled>Selecciona una categoría</option>
+            <option *ngFor="let categoria of categorias" [value]="categoria.id">
+              {{ categoria.categoria }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('categoria')?.invalid && editForm.get('categoria')?.touched" class="text-danger">
+            La categoría es requerida.
+          </div>
+        </div>
+        <button type="submit" class="btn carga-button" [disabled]="editForm.invalid">Guardar Cambios</button>
+        <button type="button" class="btn" (click)="cerrarModal()">Cancelar</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

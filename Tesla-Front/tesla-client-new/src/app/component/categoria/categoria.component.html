@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gestión de Categorías</title>
-  </head>
-  <body>
-    <div class="background-image"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestión de Categorías</title>
+</head>
+<body>
+  <div class="background-image"></div>
 
-    <div class="container-fluid text-center d-flex align-items-center justify-content-center">
-      <!-- Contenedor para Carga de Categorías -->
-      <div class="carga-container">
-        <h2 class="carga-title">Carga de Categorías</h2>
-        <form #categoryForm="ngForm" (ngSubmit)="onSubmitCategoria()">
-          <div class="form-group">
-            <label for="categoryName">Nombre de la Categoría</label>
-            <input
-              type="text"
-              id="categoryName"
-              class="form-control"
-              [(ngModel)]="categoria.categoria"
-              name="categoryName"
-              required
-            />
+  <div class="container-fluid text-center d-flex align-items-center justify-content-center">
+    <!-- Contenedor para Carga de Categorías -->
+    <div class="carga-container">
+      <h2 class="carga-title">Carga de Categorías</h2>
+      <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+        <!-- Nombre de la Categoría -->
+        <div class="form-group">
+          <label for="categoryName">Nombre de la Categoría</label>
+          <input
+            type="text"
+            id="categoryName"
+            class="form-control"
+            formControlName="categoria"
+          />
+          <div *ngIf="categoryForm.get('categoria')?.invalid && categoryForm.get('categoria')?.touched" class="text-danger">
+            El nombre de la categoría es requerido.
           </div>
-          <div class="form-group">
-            <label for="categoryDescription">Descripción</label>
-            <textarea
-              id="categoryDescription"
-              class="form-control"
-              [(ngModel)]="categoria.descripcion"
-              name="categoryDescription"
-              required
-            ></textarea>
+        </div>
+
+        <!-- Descripción de la Categoría -->
+        <div class="form-group">
+          <label for="categoryDescription">Descripción</label>
+          <textarea
+            id="categoryDescription"
+            class="form-control"
+            formControlName="descripcion"
+          ></textarea>
+          <div *ngIf="categoryForm.get('descripcion')?.invalid && categoryForm.get('descripcion')?.touched" class="text-danger">
+            La descripción es requerida.
           </div>
-          <button
-            type="submit"
-            class="btn carga-button"
-            [disabled]="categoryForm.invalid || !categoria.categoria || !categoria.descripcion"
-          >
-            Agregar Categoría
-          </button>
-        </form>
-      </div>
+        </div>
+
+        <!-- Botón de envío -->
+        <button type="submit" class="btn carga-button" [disabled]="categoryForm.invalid">
+          Agregar Categoría
+        </button>
+      </form>
     </div>
-  </body>
+  </div>
+</body>
 </html>
