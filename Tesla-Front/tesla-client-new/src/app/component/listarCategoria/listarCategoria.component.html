@@ -27,7 +27,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let categoria of categorias">
+          <tr *ngFor="let categoria of categoriasPorPagina">
             <td>{{ categoria.categoria }}</td>
             <td>{{ categoria.descripcion }}</td>
             <td>
@@ -37,6 +37,24 @@
           </tr>
         </tbody>
       </table>
+
+       <!-- Paginación -->
+       <div class="pagination">
+        <button
+          class="btn"
+          (click)="cambiarPagina(paginaActual - 1)"
+          [disabled]="!tienePaginaAnterior()">
+          Anterior
+        </button>
+        <span>Página {{ paginaActual }}</span>
+        <button
+          class="btn"
+          (click)="cambiarPagina(paginaActual + 1)"
+          [disabled]="!tienePaginaSiguiente()">
+          Siguiente
+        </button>
+      </div>
+
     </div>
   </div>
 

@@ -1,4 +1,3 @@
-
 /* Estilos globales */
 body {
   margin: 0;
@@ -6,7 +5,7 @@ body {
   height: 100vh;
   background-color: #000;
   display: flex;
-  flex-direction: row; /* Cambiar a fila para organizar el contenedor y el sidebar */
+  flex-direction: row;
   position: relative;
 }
 
@@ -23,17 +22,18 @@ body {
   z-index: 0;
 }
 
-/* Contenedor principal ajustado para crecer solo a la derecha */
+/* Contenedor principal */
 .container-fluid {
   display: flex;
-  justify-content: flex-start;  /* Alinear al principio (izquierda) */
+  justify-content: center;  /* Centra horizontalmente el contenedor */
+  align-items: center;      /* Centra verticalmente el contenedor */
   flex-grow: 1;
+  height: 100%;             /* Asegura que ocupe toda la altura disponible */
   padding-top: 10px;
-  padding-bottom: 600px;
-  padding-left: 120px; /* Deja espacio para el sidebar a la izquierda */
+  padding-left: 120px;
 }
 
-/* Contenedor de la tabla ajustado */
+/* Asegurar que el contenedor mantenga el título visible */
 .carga-container {
   background-color: rgba(0, 0, 0, 0.8);
   color: #eeff00;
@@ -42,11 +42,21 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   position: relative;
   z-index: 1;
-  width: 90vw;  /* Aumentar el ancho a un 90% de la ventana */
-  max-width: 1800px; /* Limitar el ancho máximo */
+  width: 90vw;
+  max-width: 1800px;
   min-width: 600px;
-  margin-top: 10px;
-  margin-bottom: 150px;
+  margin-top: auto;   /* Centra verticalmente en la pantalla */
+  margin-bottom: auto;
+  padding-top: 40px;  /* Espacio para el título */
+}
+
+/* Asegurar que el título de carga no esté cubierto */
+.carga-title {
+  position: relative;
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: #eeff00;
+  text-align: center;
 }
 
 /* Estilos de la tabla */
