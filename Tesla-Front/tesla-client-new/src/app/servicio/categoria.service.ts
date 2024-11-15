@@ -28,4 +28,5 @@ deleteCategoria(id:number):Observable<any>{
   return this.http.delete<any>(`${this.apiUrl}categoria/eliminar/${id}`, { responseType: 'text' as 'json' });
 }
 
+
 }

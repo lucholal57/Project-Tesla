@@ -5,6 +5,7 @@ import { Categoria } from '../../entidad/categoria';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { SweetAlert2Service } from '../../servicio/sweetAlert2.service';
 
 @Component({
   selector: 'app-categoria',
@@ -17,7 +18,9 @@ export class CategoriaComponent implements OnInit {
   categoryForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-    private categoriaService: CategoriaService) {
+    private categoriaService: CategoriaService,
+    private sweetAlertService: SweetAlert2Service
+  ) {
       // Inicializamos el formulario con validaciones
     this.categoryForm = this.formBuilder.group({
       categoria: ['', Validators.required],
@@ -34,17 +37,15 @@ export class CategoriaComponent implements OnInit {
 
       this.categoriaService.postCategoria(nuevaCategoria).subscribe({
         next: (response) => {
-          alert('Categoría agregada correctamente');
+          this.sweetAlertService.showSuccessMessage("Categoria Agregado Correctamente",1500);
           this.categoryForm.reset(); // Limpiar formulario
         },
         error: (error) => {
           console.error('Error al agregar categoría', error);
-          alert('Error al agregar la categoría');
+          this.sweetAlertService.showErrorMessage("Problemas para cargar Categoria", "reintente");
         }
       });
-    } else {
-      alert('Por favor, completa todos los campos');
-    }
+    } 
   }
 
 }
