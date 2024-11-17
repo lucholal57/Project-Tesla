@@ -45,4 +45,9 @@ public class ProductoService {
         }
         return false; // Retorna false si la categoría no existía
     }
+
+    // Método para buscar producto por código de barras
+    public Optional<Producto> buscaProductoPorCodigo(String codigo) {
+        return productoRepository.findByCodigo(codigo); // Esto debe ser implementado en el repositorio
+    }
 }
