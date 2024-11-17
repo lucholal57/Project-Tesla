@@ -1,0 +1,194 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../../assets/imagenes/tesla.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+/* Contenedor principal */
+.container-fluid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  position: relative;
+}
+
+/* Estilo del formulario */
+.carga-container {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #b6b6b6; /* Color amarillo */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 1;
+  width: 90vw;
+  max-width: 1500px;
+  min-width: 600px;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-top: 40px;
+}
+
+
+/* Título principal */
+.carga-title {
+  position: relative;
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: #eeff00; /* Amarillo */
+  text-align: center;
+}
+
+/* Estilo para las etiquetas */
+.form-group label {
+  font-weight: bold;
+  font-size: 14px;
+  color: #d9ff00; /* Amarillo */
+  display: block;
+  margin-bottom: 14px;
+}
+
+/* Inputs y selects */
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #0a0a0a; /* Borde amarillo */
+  border-radius: 8px;
+  margin-bottom: 15px;
+  background-color: #ffffff; /* Fondo negro */
+  color: #030303; /* Texto amarillo */
+}
+
+/* Color del texto del placeholder */
+::placeholder {
+  color: #525252; /* Blanco */
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #eeff00; /* Amarillo */
+  box-shadow: 0 0 5px rgba(238, 255, 0, 0.5);
+}
+
+/* Tabla de productos */
+.productos-lista {
+  margin-top: 20px;
+  overflow-x: auto; /* Asegura que sea responsiva */
+}
+
+.table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  background-color: #686868; /* Negro */
+  color: #ffffff; /* Amarillo */
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.table td {
+  border-bottom: 1px solid #838383; /* Línea amarilla */
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+  color: #eeff00; /* Amarillo */
+  background-color: #000000; /* Negro */
+}
+
+/* Sección del total */
+.total-container {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.total-label {
+  font-size: 20px;
+  font-weight: bold;
+  color: #eeff00; /* Amarillo */
+}
+
+/* Botón de finalizar venta */
+.venta-button {
+  background-color: #eeff00; /* Amarillo */
+  color: #000000; /* Negro */
+  padding: 12px 20px;
+  border: none;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.venta-button:hover {
+  background-color: #cccc00; /* Amarillo oscuro */
+}
+
+.venta-button:disabled {
+  background-color: #555555; /* Gris para indicar deshabilitado */
+  color: #eeeeee; /* Texto gris claro */
+  cursor: not-allowed;
+}
+
+/* Mensaje de error */
+.text-danger {
+  color: #eeff00; /* Amarillo */
+  font-size: 16px;
+  margin-top: -10px;
+}
+
+
+/* Estilo de los controles de paginación */
+.pagination-controls {
+  display: flex;
+  justify-content: center; /* Centra los botones */
+  align-items: center; /* Centra los botones verticalmente */
+  margin-top: 10px; /* Espacio superior */
+}
+
+.pagination-controls button {
+  background-color: #eeff00;
+  color: rgb(14, 13, 13);
+  border: none;
+  padding: 5px 15px;  /* Reducir el padding para hacer los botones más chatos */
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px; /* Ajusta el tamaño de la fuente si lo deseas */
+}
+
+.pagination-controls button:disabled {
+  background-color: #ccc; /* Cambiar color cuando el botón está deshabilitado */
+  cursor: not-allowed;
+}
+
+.pagination-controls span {
+  font-size: 14px;  /* Ajustar el tamaño de la fuente para que coincida con los botones */
+  color: #333;
+  margin: 0 5px; /* Añadir un poco de margen alrededor del número de página */
+}

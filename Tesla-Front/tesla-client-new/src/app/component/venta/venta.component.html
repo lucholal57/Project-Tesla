@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro de Venta</title>
+  </head>
+  <body>
+    <div class="background-image"></div>
+
+    <div class="container-fluid">
+      <div class="carga-container">
+        <h1 class="carga-title">Registro de Venta</h1>
+
+        <form
+          [formGroup]="ventaForm"
+          (ngSubmit)="onSubmit()"
+          class="venta-form"
+        >
+          <!-- Código del Producto -->
+          <div class="form-group">
+            <label for="productCode">Código de Barras</label>
+            <input
+              type="number"
+              id="productCode"
+              class="form-control"
+              formControlName="codigo"
+              placeholder="Ingresa el código de barras"
+              (keydown.enter)="verificarStock($event)"
+            />
+            <div *ngIf="productoNoDisponible" class="text-danger">
+              El producto no está disponible en stock.
+            </div>
+          </div>
+
+          <!-- Lista de Productos -->
+          <div *ngIf="productosSeleccionados.length > 0" class="productos-lista">
+            <h2>Productos Seleccionados</h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Cantidad</th>
+                  <th>Precio</th>
+                  <th>Stock</th>
+                  <th>Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of productosPaginados">
+                  <td>{{ item.nombre }}</td>
+                  <td>{{ item.cantidad }}</td>
+                  <td>{{ item.precio | currency }}</td>
+                  <td>{{ item.stock }}</td>
+                  <td>{{ item.cantidad * item.precio | currency }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="pagination-controls">
+              <button (click)="cambiarPagina(p - 1)" [disabled]="p <= 1">Anterior</button>
+              <span>{{ p }}</span>
+              <button (click)="cambiarPagina(p + 1)" [disabled]="p >= productosSeleccionados.length / itemsPorPagina">Siguiente</button>
+            </div>
+          </div>
+
+          <!-- Total de la Venta -->
+          <div class="form-group">
+            <label>Total de la Venta</label>
+            <input
+              type="text"
+              class="form-control total"
+              [value]="total | currency"
+              readonly
+            />
+          </div>
+
+          <!-- Descripción de la Venta -->
+          <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <input
+              type="text"
+              id="descripcion"
+              class="form-control"
+              formControlName="descripcion"
+              placeholder="Ingrese Descripción de la venta"
+            />
+          </div>
+
+          <!-- Método de Pago -->
+          <div class="form-group">
+            <label for="metodoPago">Método de Pago</label>
+            <select
+              id="metodoPago"
+              class="form-control"
+              formControlName="metodoPago"
+            >
+              <option value="EFECTIVO">Efectivo</option>
+              <option value="DEBITO">Débito</option>
+              <option value="CREDITO">Crédito</option>
+            </select>
+          </div>
+
+          <!-- Botón de Reset -->
+          <div class="form-group text-left">
+            <button type="button" class="btn btn-warning" (click)="resetearFormulario()">Reiniciar Formulario</button>
+          </div>
+
+          <!-- Botón de Enviar -->
+          <div class="form-group text-center">
+            <button
+              type="submit"
+              class="btn venta-button"
+              [disabled]="ventaForm.invalid"
+            >
+              Finalizar Venta
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

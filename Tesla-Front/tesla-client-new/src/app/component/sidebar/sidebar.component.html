@@ -8,9 +8,17 @@
 
   <ul>
     <li class="has-subnav">
-      <a href="#">
+      venta
+      <a [routerLink]="'/venta'">
         <i class="fa-solid fa-dollar-sign fa-2x icon-color"></i>
         <span class="nav-text">Generar Venta</span>
+      </a>
+    </li>
+
+    <li class="has-subnav">
+      <a [routerLink]="'/listar-venta'">
+        <i class="fa-solid fa-list fa-2x icon-color"></i> <!-- Usando icono de lista -->
+        <span class="nav-text">Listado Ventas</span>
       </a>
     </li>
 
@@ -22,18 +30,20 @@
     </li>
 
     <li class="has-subnav">
+      <a [routerLink]="'/listar-productos'">
+        <i class="fa-solid fa-list fa-2x icon-color"></i> <!-- Usando icono de lista -->
+        <span class="nav-text">Listado Productos</span>
+      </a>
+    </li>
+
+
+    <li class="has-subnav">
       <a [routerLink]="'/cargar-categorias'">
         <i class="fa-solid fa-box fa-2x icon-color"></i> <!-- Usando icono de etiquetas -->
         <span class="nav-text">Cargar Categorias</span>
       </a>
     </li>
 
-    <li class="has-subnav">
-      <a [routerLink]="'/listar-productos'">
-        <i class="fa-solid fa-list fa-2x icon-color"></i> <!-- Usando icono de lista -->
-        <span class="nav-text">Listado Productos</span>
-      </a>
-    </li>
 
     <li class="has-subnav">
       <a [routerLink]="'/listar-categorias'">
@@ -41,6 +51,8 @@
         <span class="nav-text">Listado Categorias</span>
       </a>
     </li>
+
+
 
     <li class="has-subnav">
       <a href="#">

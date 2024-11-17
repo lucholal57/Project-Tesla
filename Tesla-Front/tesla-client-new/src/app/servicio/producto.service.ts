@@ -28,4 +28,8 @@ deleteProducto(id:number):Observable<any>{
   return this.http.delete<any>(`${this.apiUrl}producto/eliminar/${id}`, { responseType: 'text' as 'json' });
 }
 
+getProductoPorCodigo(codigo: string): Observable<any> {
+  return this.http.get(`${this.apiUrl}producto/codigo/${codigo}`);
+}
+
 }
