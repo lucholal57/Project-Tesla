@@ -11,14 +11,15 @@ import { SweetAlert2Service } from '../../servicio/sweetAlert2.service';
 import Swal from 'sweetalert2';
 import { NotificacionStockService } from '../../servicio/notificacionStock.service';
 
+
 @Component({
-  selector: 'app-listarProducto',
-  templateUrl: './listarProducto.component.html',
-  styleUrls: ['./listarProducto.component.css'],
+  selector: 'app-productoBajoStock',
+  templateUrl: './productoBajoStock.component.html',
+  styleUrls: ['./productoBajoStock.component.css'],
   standalone: true,
-  imports: [RouterModule, CommonModule, ReactiveFormsModule,FormsModule]
+  imports: [RouterModule, CommonModule, ReactiveFormsModule, FormsModule]
 })
-export class ListarProductoComponent implements OnInit {
+export class ProductoBajoStockComponent implements OnInit {
   productos: Producto[] = [];
   categorias: Categoria[] = [];
   showModal: boolean = false;
@@ -60,7 +61,7 @@ export class ListarProductoComponent implements OnInit {
 
   // Método para obtener los productos desde el servicio
   getProductos(): void {
-    this.productoService.getProducto().subscribe({
+    this.productoService.obtenerProductosBajoStock().subscribe({
       next: (response) => {
         this.productos = response;  // Asignar los productos obtenidos
         this.productosOriginales = [...this.productos];
@@ -134,7 +135,6 @@ export class ListarProductoComponent implements OnInit {
                 this.getProductos();
                 this.cerrarModal();
                 this.notificacionStockService.checkStockBajo();
-
               });
             } else {
               this.productoService.postProducto(producto).subscribe(response => {
@@ -181,11 +181,11 @@ export class ListarProductoComponent implements OnInit {
 
 
 
-   // Función para actualizar los productos que se deben mostrar en la página actual
-   actualizarPagina() {
+  // Función para actualizar los productos que se deben mostrar en la página actual
+  actualizarPagina() {
     const inicio = (this.paginaActual - 1) * this.registrosPorPagina;
-  const fin = inicio + this.registrosPorPagina;
-  this.productosPorPagina = this.productos.slice(inicio, fin);  // Filtrar productos para la página actual
+    const fin = inicio + this.registrosPorPagina;
+    this.productosPorPagina = this.productos.slice(inicio, fin);  // Filtrar productos para la página actual
   }
 
   // Cambiar la página
@@ -213,74 +213,72 @@ export class ListarProductoComponent implements OnInit {
   }
 
   // Filtrar productos por nombre
-filtrarPorNombre(): void {
-  if (this.nombre) {
-    this.sweetAlertService.showLoadingMessage().then(() => {
-      // Filtrar productos donde el nombre contiene el texto ingresado
-      this.productos = this.productosOriginales.filter((producto) =>
-        producto.nombre.toLowerCase().includes(this.nombre.toLowerCase())
-      );
+  filtrarPorNombre(): void {
+    if (this.nombre) {
+      this.sweetAlertService.showLoadingMessage().then(() => {
+        // Filtrar productos donde el nombre contiene el texto ingresado
+        this.productos = this.productosOriginales.filter((producto) =>
+          producto.nombre.toLowerCase().includes(this.nombre.toLowerCase())
+        );
 
-      // Actualizar la página después de filtrar
+        // Actualizar la página después de filtrar
+        this.actualizarPagina();
+      }).catch((error) => {
+        console.error("Error al mostrar el mensaje de carga:", error);
+      });
+    } else {
+      // Si no hay filtro de nombre, restauramos todos los productos
+      this.productos = [...this.productosOriginales];
+
+      // Actualizar la página después de restaurar todos los productos
       this.actualizarPagina();
-    }).catch((error) => {
-      console.error("Error al mostrar el mensaje de carga:", error);
-    });
-  } else {
-    // Si no hay filtro de nombre, restauramos todos los productos
-    this.productos = [...this.productosOriginales];
-
-    // Actualizar la página después de restaurar todos los productos
-    this.actualizarPagina();
+    }
   }
-}
 
-// Filtrar productos por descripción
-filtrarPorDescripcion(): void {
-  if (this.descripcion) {
-    this.sweetAlertService.showLoadingMessage().then(() => {
-      // Filtrar productos donde la descripción contiene el texto ingresado
-      this.productos = this.productosOriginales.filter((producto) =>
-        producto.descripcion.toLowerCase().includes(this.descripcion.toLowerCase())
-      );
+  // Filtrar productos por descripción
+  filtrarPorDescripcion(): void {
+    if (this.descripcion) {
+      this.sweetAlertService.showLoadingMessage().then(() => {
+        // Filtrar productos donde la descripción contiene el texto ingresado
+        this.productos = this.productosOriginales.filter((producto) =>
+          producto.descripcion.toLowerCase().includes(this.descripcion.toLowerCase())
+        );
 
-      // Actualizar la página después de filtrar
+        // Actualizar la página después de filtrar
+        this.actualizarPagina();
+      }).catch((error) => {
+        console.error("Error al mostrar el mensaje de carga:", error);
+      });
+    } else {
+      // Si no hay filtro de descripción, restauramos todos los productos
+      this.productos = [...this.productosOriginales];
+
+      // Actualizar la página después de restaurar todos los productos
       this.actualizarPagina();
-    }).catch((error) => {
-      console.error("Error al mostrar el mensaje de carga:", error);
-    });
-  } else {
-    // Si no hay filtro de descripción, restauramos todos los productos
-    this.productos = [...this.productosOriginales];
-
-    // Actualizar la página después de restaurar todos los productos
-    this.actualizarPagina();
+    }
   }
-}
 
-// Filtrar productos por categoría
-filtrarPorCategoria(): void {
-  if (this.categoria) {
-    this.sweetAlertService.showLoadingMessage().then(() => {
-      // Filtrar productos donde la categoría coincide con la seleccionada
-      this.productos = this.productosOriginales.filter((producto) =>
-        producto.categoria.categoria.toLowerCase().includes(this.categoria.toLowerCase())
-      );
+  // Filtrar productos por categoría
+  filtrarPorCategoria(): void {
+    if (this.categoria) {
+      this.sweetAlertService.showLoadingMessage().then(() => {
+        // Filtrar productos donde la categoría coincide con la seleccionada
+        this.productos = this.productosOriginales.filter((producto) =>
+          producto.categoria.categoria.toLowerCase().includes(this.categoria.toLowerCase())
+        );
 
-      // Actualizar la página después de filtrar
+        // Actualizar la página después de filtrar
+        this.actualizarPagina();
+      }).catch((error) => {
+        console.error("Error al mostrar el mensaje de carga:", error);
+      });
+    } else {
+      // Si no hay filtro de categoría, restauramos todos los productos
+      this.productos = [...this.productosOriginales];
+
+      // Actualizar la página después de restaurar todos los productos
       this.actualizarPagina();
-    }).catch((error) => {
-      console.error("Error al mostrar el mensaje de carga:", error);
-    });
-  } else {
-    // Si no hay filtro de categoría, restauramos todos los productos
-    this.productos = [...this.productosOriginales];
-
-    // Actualizar la página después de restaurar todos los productos
-    this.actualizarPagina();
+    }
   }
-}
-
-
 
 }

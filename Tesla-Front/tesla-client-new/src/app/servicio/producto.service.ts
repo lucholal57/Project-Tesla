@@ -32,4 +32,8 @@ getProductoPorCodigo(codigo: string): Observable<any> {
   return this.http.get(`${this.apiUrl}producto/codigo/${codigo}`);
 }
 
+obtenerProductosBajoStock(): Observable<any> {
+  return this.http.get(this.apiUrl + 'producto/stock-bajo');
+}
+
 }

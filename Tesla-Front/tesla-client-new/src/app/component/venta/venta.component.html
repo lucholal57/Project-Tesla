@@ -34,7 +34,10 @@
           </div>
 
           <!-- Lista de Productos -->
-          <div *ngIf="productosSeleccionados.length > 0" class="productos-lista">
+          <div
+            *ngIf="productosSeleccionados.length > 0"
+            class="productos-lista"
+          >
             <h2>Productos Seleccionados</h2>
             <table class="table">
               <thead>
@@ -58,9 +61,16 @@
             </table>
 
             <div class="pagination-controls">
-              <button (click)="cambiarPagina(p - 1)" [disabled]="p <= 1">Anterior</button>
+              <button (click)="cambiarPagina(p - 1)" [disabled]="p <= 1">
+                Anterior
+              </button>
               <span>{{ p }}</span>
-              <button (click)="cambiarPagina(p + 1)" [disabled]="p >= productosSeleccionados.length / itemsPorPagina">Siguiente</button>
+              <button
+                (click)="cambiarPagina(p + 1)"
+                [disabled]="p >= productosSeleccionados.length / itemsPorPagina"
+              >
+                Siguiente
+              </button>
             </div>
           </div>
 
@@ -101,9 +111,28 @@
             </select>
           </div>
 
+          <!-- Interés -->
+          <div class="form-group">
+            <label for="interes">Interés (%)</label>
+            <input
+              type="number"
+              id="interes"
+              class="form-control"
+              formControlName="interes"
+              placeholder="Ingrese el porcentaje de interés"
+              (input)="calcularTotal()"
+            />
+          </div>
+
           <!-- Botón de Reset -->
           <div class="form-group text-left">
-            <button type="button" class="btn btn-warning" (click)="resetearFormulario()">Reiniciar Formulario</button>
+            <button
+              type="button"
+              class="btn btn-warning"
+              (click)="resetearFormulario()"
+            >
+              Reiniciar Formulario
+            </button>
           </div>
 
           <!-- Botón de Enviar -->
@@ -116,7 +145,6 @@
               Finalizar Venta
             </button>
           </div>
-
         </form>
       </div>
     </div>

@@ -84,3 +84,27 @@ body {
   bottom: 20px;
   width: 100%;
 }
+
+/* En tu archivo CSS */
+li.has-subnav {
+  position: relative;  /* Necesario para que el badge se posicione correctamente */
+}
+
+/* Estilo para el badge */
+.badge {
+  position: absolute;
+  top: 43px;              /* Ajustar para alinearlo correctamente */
+  right: 35px;            /* Ajustar para alinearlo correctamente */
+  background-color: red;  /* Color de fondo */
+  color: white;           /* Color del texto */
+  padding: 0.2rem 0.4rem; /* Reducir el espacio alrededor del texto */
+  border-radius: 50%;     /* Hacerlo circular */
+  font-size: 1rem;        /* Reducir el tamaño del texto */
+  min-width: 1rem;      /* Ajustar el tamaño mínimo */
+  height: 1.2rem;         /* Hacer el badge más pequeño */
+  display: flex;
+  align-items: center;    /* Centrar el texto verticalmente */
+  justify-content: center; /* Centrar el texto horizontalmente */
+  text-align: center;
+}
+

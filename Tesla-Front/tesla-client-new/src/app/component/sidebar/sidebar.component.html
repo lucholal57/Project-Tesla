@@ -54,12 +54,25 @@
 
 
 
+
     <li class="has-subnav">
-      <a href="#">
+      <a [routerLink]="'/listar-productos/stock-bajo'">
         <i class="fa-solid fa-chart-line fa-2x icon-color"></i> <!-- Usando icono de gráfico -->
         <span class="nav-text">Control de Stock</span>
+        <span *ngIf="stockBajoCount > 0" class="badge">
+          {{ stockBajoCount }}
+        </span>
       </a>
     </li>
+
+    <li class="has-subnav">
+      <a [routerLink]="'/dashboard'">
+        <i class="fa-solid fa-tachometer-alt fa-2x icon-color"></i> <!-- Icono de dashboard -->
+        <span class="nav-text">Dashboard</span>
+      </a>
+    </li>
+
+
   </ul>
 
   <ul class="logout">

@@ -8,6 +8,8 @@ import { ListarProductoComponent } from './component/listarProducto/listarProduc
 import { authGuard } from './auth/auth.guard';
 import { VentaComponent } from './component/venta/venta.component';
 import { ListarVentaComponent } from './component/listarVenta/listarVenta.component';
+import { ProductoBajoStockComponent } from './component/productoBajoStock/productoBajoStock.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -15,7 +17,9 @@ export const routes: Routes = [
   { path: 'cargar-categorias', component: CategoriaComponent, canActivate: [authGuard] },
   { path: 'listar-categorias', component: ListarCategoriaComponent, canActivate: [authGuard] },
   { path: 'listar-productos', component: ListarProductoComponent, canActivate: [authGuard] },
+  { path: 'listar-productos/stock-bajo', component: ProductoBajoStockComponent, canActivate: [authGuard] },
   { path: 'venta', component: VentaComponent, canActivate: [authGuard] },
   { path: 'listar-venta', component: ListarVentaComponent, canActivate: [authGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];

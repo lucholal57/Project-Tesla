@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Dashboard</title>
+    <!-- Aquí incluirías las hojas de estilo de Bootstrap o de otros frameworks que estés utilizando -->
+  </head>
+  <body>
+    <!-- Aquí comienza tu contenedor principal -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <!-- Contenedor único para el gráfico -->
+        <div class="col-md-12 mb-4">
+          <div class="dashboard-center">
+            <h2 class="section-title">DASHBOARD</h2>
+
+            <!-- Botones para seleccionar gráficos -->
+            <div class="chart-selection">
+              <button class="btn btn-primary" (click)="selectChart(1)">
+                Gráfico 1
+              </button>
+              <button class="btn btn-primary" (click)="selectChart(2)">
+                Gráfico 2
+              </button>
+              <button class="btn btn-primary" (click)="selectChart(3)">
+                Gráfico 3
+              </button>
+              <button class="btn btn-primary" (click)="selectChart(4)">
+                Gráfico 4
+              </button>
+            </div>
+
+            <!-- Contenedor del gráfico seleccionado -->
+            <div class="dashboard-container">
+              <div class="chart-wrapper">
+                <!-- Título dinámico basado en el gráfico seleccionado -->
+                <div class="chart-title">
+                  <ng-container *ngIf="selectedChart === 1">Ganancias por Mes</ng-container>
+                  <ng-container *ngIf="selectedChart === 2">Totales por Método de Pago</ng-container>
+                  <ng-container *ngIf="selectedChart === 3">Productos Mas Vendidos</ng-container>
+                  <ng-container *ngIf="selectedChart === 4">Gráfico 4</ng-container>
+                </div>
+
+                <!-- Mostrar gráfico de Ganancias por Mes -->
+                <ngx-charts-bar-vertical
+                  *ngIf="selectedChart === 1"
+                  [scheme]="colorScheme"
+                  [results]="gananciasPorMes"
+                  [xAxis]="true"
+                  [yAxis]="true"
+                  [legend]="false"
+                  [showDataLabel]="true"
+                  [xAxisLabel]="'Mes'"
+                  [yAxisLabel]="'Ganancias ($)'"
+                  [view]="[windowWidth * 0.8, windowHeight * 0.6]"
+                >
+                </ngx-charts-bar-vertical>
+
+                <!-- Mostrar gráfico de Totales por Método de Pago -->
+                <ngx-charts-pie-grid
+                  *ngIf="selectedChart === 2"
+                  [view]="[windowWidth / 2, 400]"
+                  [scheme]="colorScheme"
+                  [results]="totalesPorMetodoPago"
+                >
+                </ngx-charts-pie-grid>
+
+                <ngx-charts-pie-grid
+  *ngIf="selectedChart === 3"
+  [view]="[windowWidth * 0.8, windowHeight * 0.6]"
+  [scheme]="colorScheme"
+  [results]="productosMasVendidos"
+  [tooltipDisabled]="false"
+>
+</ngx-charts-pie-grid>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

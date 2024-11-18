@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Venta } from '../../entidad/venta';
 import { Producto } from '../../entidad/producto';
+import { NotificacionStockService } from '../../servicio/notificacionStock.service';
 
 @Component({
   selector: 'app-venta',
@@ -29,14 +30,18 @@ export class VentaComponent implements OnInit {
     private formBuilder: FormBuilder,
     private productoService: ProductoService,
     private ventaService: VentaService,
-    private sweetAlertService: SweetAlert2Service
+    private sweetAlertService: SweetAlert2Service,
+    private notificacionStockService: NotificacionStockService
   ) {
     this.ventaForm = this.formBuilder.group({
       codigo: ['', [Validators.required, Validators.pattern(/^[0-9]*$/)]],
       descripcion: ['', Validators.required],
       metodoPago: ['', Validators.required],
+      interes: [0],  // Validación predeterminada para valores positivos
     });
   }
+
+
 
   // Paginación de productos
   get productosPaginados() {
@@ -139,11 +144,19 @@ export class VentaComponent implements OnInit {
   }
 
   calcularTotal(): void {
-    this.total = this.productosSeleccionados.reduce(
+    let subtotal = this.productosSeleccionados.reduce(
       (acc, producto) => acc + (producto.precio * producto.cantidad),
       0
     );
-    console.log('Total actualizado:', this.total);  // Opcional: para depurar
+
+    // Obtener el valor de interés (porcentaje)
+    const interes = this.ventaForm.get('interes')?.value || 0;
+
+    // Calcular el total con el interés
+    const totalConInteres = subtotal + (subtotal * interes / 100);
+    this.total = totalConInteres;
+
+    console.log('Total actualizado con interés:', this.total);  // Para depurar
   }
 
   // Realizar la venta
@@ -165,6 +178,7 @@ export class VentaComponent implements OnInit {
           producto: p.producto, // El producto
         })),
         metodoPago: this.ventaForm.value.metodoPago, // Método de pago
+        total: this.ventaForm.value.total, // Total
       };
 
       // Registrar la venta en el backend
@@ -180,6 +194,7 @@ export class VentaComponent implements OnInit {
 
           // Limpiar el formulario y los productos seleccionados
           this.resetearFormulario();
+          this.notificacionStockService.checkStockBajo();
         },
         error: () => {
           // Mostrar mensaje de error

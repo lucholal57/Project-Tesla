@@ -60,8 +60,8 @@ showConfirmMessage(title: string, text: string) {
 showLoadingMessage() {
   let timerInterval: any; // Declara timerInterval correctamente
   return Swal.fire({
-    title: "Auto close alert!",
-    html: "I will close in <b></b> milliseconds.",
+    title: "Buscando ....!",
+    html: "Obteniendo Datos Filtrados <b></b> milliseconds.",
     timer: 700,
     timerProgressBar: true,
     didOpen: () => {

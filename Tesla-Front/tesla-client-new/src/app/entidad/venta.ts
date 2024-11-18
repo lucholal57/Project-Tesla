@@ -6,6 +6,7 @@ export interface Venta {
   descripcion: string; // Descripción de la venta
   detalles: ProductoVenta[]; // Lista de productos con su cantidad
   metodoPago: string; // Método de pago utilizado
+  total: number; // Total
 
 }
 
