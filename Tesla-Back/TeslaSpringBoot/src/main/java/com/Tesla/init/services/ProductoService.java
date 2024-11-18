@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductoService {
@@ -49,5 +50,10 @@ public class ProductoService {
     // Método para buscar producto por código de barras
     public Optional<Producto> buscaProductoPorCodigo(String codigo) {
         return productoRepository.findByCodigo(codigo); // Esto debe ser implementado en el repositorio
+    }
+
+    // Obtener productos bajos en Stock
+    public List<Producto> obtenerProductosBajoStock() {
+        return productoRepository.findProductosConStockBajo();
     }
 }

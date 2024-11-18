@@ -80,4 +80,12 @@ public class ProductoRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build()); // Devuelve un 404 Not Found si no se encuentra el producto
     }
 
+    //Lista todos los Productos bajos en stick
+    @GetMapping(value = "/stock-bajo")
+    public ResponseEntity<List<Producto>> obtenerProductosBajoStock() {
+        List<Producto> productosBajoStock = productoService.obtenerProductosBajoStock();
+        return ResponseEntity.ok(productosBajoStock);
+
+    }
+
 }
