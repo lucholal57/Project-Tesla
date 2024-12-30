@@ -1,0 +1,259 @@
+/* Estilos globales */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-color: #000;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../../assets/imagenes/tesla.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.7;
+  z-index: 0;
+}
+
+/* Contenedor principal */
+.container-fluid {
+  display: flex;
+  justify-content: center;  /* Centra horizontalmente el contenedor */
+  align-items: center;      /* Centra verticalmente el contenedor */
+  flex-grow: 1;
+  height: 100%;             /* Asegura que ocupe toda la altura disponible */
+  padding-top: 10px;
+  padding-left: 120px;
+}
+
+/* Asegurar que el contenedor mantenga el título visible */
+.carga-container {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #eeff00;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 1;
+  width: 90vw;
+  max-width: 1800px;
+  min-width: 600px;
+  margin-top: auto;   /* Centra verticalmente en la pantalla */
+  margin-bottom: auto;
+  padding-top: 40px;  /* Espacio para el título */
+}
+
+/* Asegurar que el título de carga no esté cubierto */
+.carga-title {
+  position: relative;
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: #eeff00;
+  text-align: center;
+}
+
+/* Estilos de la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Estilos de los botones */
+.btn {
+  background-color: #eeff00;
+  color: #000;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.btn:hover {
+  background-color: #d4d400;
+}
+
+/* Estilos del Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  color: #000;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 50%;
+}
+
+form .form-group {
+  margin-bottom: 15px;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+form button {
+  margin-top: 20px;
+}
+
+
+/* Paginación */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #333333;
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.pagination button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+/* Estilo general para los filtros */
+.filtros {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px; /* Espacio entre los filtros */
+  margin-bottom: 20px;
+}
+
+/* Estilo de cada filtro */
+.filtro-fecha, .filtro-descripcion {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre los elementos dentro de cada filtro */
+}
+
+/* Estilo de los inputs */
+input[type="date"], input[type="text"] {
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 200px; /* Ancho fijo para los inputs */
+}
+
+/* Estilo de los botones */
+button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Estilo cuando el botón es hover */
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para los filtros de fecha, descripción y método de pago */
+.filtros {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.filtro-fecha, .filtro-descripcion, .filtro-metodo-pago {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Estilo para los filtros de fecha, descripción y método de pago */
+.filtros {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; /* Espaciado entre los filtros */
+  margin-bottom: 20px;
+}
+
+.filtro-fecha, .filtro-descripcion, .filtro-metodo-pago {
+  display: flex;
+  flex-direction: row; /* Los elementos dentro de cada filtro estarán en fila */
+  align-items: center; /* Alinea los elementos verticalmente */
+  gap: 10px; /* Espaciado entre los inputs/select y los botones */
+  width: 30%; /* Ancho ajustado para que quepan en una fila */
+}
+
+/* Estilo para los botones de los filtros */
+.filtro-fecha button,
+.filtro-descripcion button,
+.filtro-metodo-pago button {
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #d4d400; /* Establece el grosor (2px), el tipo de borde (solid) y el color */
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+/* Estilo cuando el mouse pasa por encima de los botones */
+.filtro-fecha button:hover,
+.filtro-descripcion button:hover,
+.filtro-metodo-pago button:hover {
+  background-color: #9eb905;
+}
+
+/* Estilo para los inputs de los filtros */
+.filtro-fecha input,
+.filtro-descripcion input,
+.filtro-metodo-pago select {
+  padding: 6px 15px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #797979;
+  width: 250px; /* Ancho más pequeño para los inputs */
+  margin: 0; /* Quitar margen para que los botones queden pegados */
+}
+

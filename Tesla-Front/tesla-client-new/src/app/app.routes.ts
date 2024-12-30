@@ -10,6 +10,7 @@ import { VentaComponent } from './component/venta/venta.component';
 import { ListarVentaComponent } from './component/listarVenta/listarVenta.component';
 import { ProductoBajoStockComponent } from './component/productoBajoStock/productoBajoStock.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { CierreCajaComponent } from './component/cierreCaja/cierreCaja.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -21,5 +22,6 @@ export const routes: Routes = [
   { path: 'venta', component: VentaComponent, canActivate: [authGuard] },
   { path: 'listar-venta', component: ListarVentaComponent, canActivate: [authGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
+  { path: 'cierre-caja', component: CierreCajaComponent, canActivate: [authGuard] },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];

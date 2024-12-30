@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cierre de Caja</title>
+  </head>
+  <body>
+    <div class="background-image"></div>
+
+    <div class="container-fluid text-center d-flex align-items-center justify-content-center">
+      <div class="carga-container">
+        <h2 class="carga-title">Cierre de Caja </h2>
+
+        <!-- Mensaje si no hay ventas -->
+        <div *ngIf="ventas.length === 0" class="no-ventas">
+          <p class="text-center">No hay ventas registradas para el cierre de caja</p>
+        </div>
+
+        <!-- Tabla de Ventas -->
+        <table *ngIf="ventas.length > 0">
+          <thead>
+            <tr>
+              <th>ID Venta</th>
+              <th>Descripcion</th>
+              <th>Producto (Cantidad)</th>
+              <th>Categoría</th>
+              <th>Fecha</th>
+              <th>Forma de Pago</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let venta of ventasPorPagina">
+              <td>{{ venta.id }}</td>
+              <td>{{venta.descripcion}}</td>
+              <td>
+                <ul>
+                  <li *ngFor="let detalle of venta.detalles">
+                    {{ detalle.producto.nombre }} ({{ detalle.cantidad }})
+                  </li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li *ngFor="let detalle of venta.detalles">
+                    {{ detalle.producto.categoria.categoria }}
+                  </li>
+                </ul>
+              </td>
+              <td>{{ venta.fecha | date:'dd/MM/yyyy HH:mm' }}</td>
+              <td>{{ venta.metodoPago }}</td>
+              <td>{{ venta.total | currency }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Paginación -->
+        <div class="pagination">
+          <button
+            class="btn"
+            (click)="cambiarPagina(paginaActual - 1)"
+            [disabled]="!tienePaginaAnterior()">
+            Anterior
+          </button>
+          <span>Página {{ paginaActual }}</span>
+          <button
+            class="btn"
+            (click)="cambiarPagina(paginaActual + 1)"
+            [disabled]="!tienePaginaSiguiente()">
+            Siguiente
+          </button>
+        </div>
+
+
+      </div>
+    </div>
+  </body>
+</html>
