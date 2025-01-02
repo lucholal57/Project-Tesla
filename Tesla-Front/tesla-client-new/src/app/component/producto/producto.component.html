@@ -56,6 +56,20 @@
             </div>
           </div>
 
+          <!-- Precio del Producto -->
+          <div class="form-group">
+            <label for="productPrice">Precio Costo</label>
+            <input
+              type="number"
+              id="productPriceCosto"
+              class="form-control"
+              formControlName="precioCosto"
+            />
+            <div *ngIf="productoForm.get('precio')?.invalid && productoForm.get('precio')?.touched" class="text-danger">
+              Ingresa un precio válido mayor a cero.
+            </div>
+          </div>
+
           <!-- Descripción del Producto -->
           <div class="form-group">
             <label for="productDescription">Descripción</label>

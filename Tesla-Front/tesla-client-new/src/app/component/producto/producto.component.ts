@@ -36,7 +36,8 @@ export class ProductoComponent implements OnInit {
       ],
       descripcion: ['', Validators.required],
       stock: [0, [Validators.required, Validators.min(1)]],
-      precio: [0, [Validators.required, Validators.min(1)]],
+      precio: [[Validators.required, Validators.min(1)]],
+      precioCosto: [[Validators.required, Validators.min(1)]],
       categoria: [null, Validators.required] // Asigna null inicialmente, pero debe ser un objeto de categoria más tarde
     });
   }
