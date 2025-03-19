@@ -24,7 +24,7 @@ FROM nginx:alpine
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copiar la aplicación Angular generada en la etapa de build
-COPY --from=build /app/dist/tesla-client-new/ /usr/share/nginx/html
+COPY --from=build /app/dist/tesla-client-new/. /usr/share/nginx/html
 
 # Copiar configuración de Nginx **a la ubicación correcta**
 COPY nginx.conf /etc/nginx/conf.d/default.conf
