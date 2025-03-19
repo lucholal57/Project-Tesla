@@ -8,7 +8,8 @@ import { Categoria } from '../entidad/categoria';
 })
 export class CategoriaService {
 
-  private apiUrl = 'http://localhost:8085/api/';
+  //private apiUrl = 'http://localhost:8085/api/';
+  private apiUrl = 'https://project-tesla-render.onrender.com/api/';
 
 constructor(private http: HttpClient) { }
 
