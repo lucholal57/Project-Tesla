@@ -11,8 +11,9 @@ COPY package.json package-lock.json ./
 # Instalar dependencias sin guardar paquetes innecesarios
 RUN npm install --legacy-peer-deps
 
-# Copiar el resto del código fuente del proyecto
-COPY . .
+# Copiar todo el código fuente del proyecto Angular
+COPY . /app
+
 
 # Compilar la aplicación para producción
 RUN npm run build --configuration=production
