@@ -4,6 +4,7 @@ FROM node:18 AS build
 # Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
+
 # Copiar archivos de configuración de dependencias
 COPY package.json package-lock.json ./
 
@@ -25,7 +26,7 @@ RUN rm -rf /usr/share/nginx/html/*
 # Copiar la aplicación Angular generada en la etapa de build
 COPY --from=build /app/dist/tesla-client-new /usr/share/nginx/html
 
-# 🔴 Corrección: Copiar `nginx.conf` en `/etc/nginx/conf.d/default.conf` (NO en `/etc/nginx/nginx.conf`)
+# Copiar configuración de Nginx **a la ubicación correcta**
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Exponer el puerto en el que corre Nginx
@@ -33,3 +34,5 @@ EXPOSE 80
 
 # Comando por defecto para ejecutar Nginx
 CMD ["nginx", "-g", "daemon off;"]
+
+
