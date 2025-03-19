@@ -25,8 +25,8 @@ RUN rm -rf /usr/share/nginx/html/*
 # Copiar la aplicación Angular generada en la etapa de build
 COPY --from=build /app/dist/tesla-client-new /usr/share/nginx/html
 
-# Copiar configuración personalizada de Nginx para manejar rutas Angular
-COPY nginx.conf /etc/nginx/nginx.conf
+# 🔴 Corrección: Copiar `nginx.conf` en `/etc/nginx/conf.d/default.conf` (NO en `/etc/nginx/nginx.conf`)
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Exponer el puerto en el que corre Nginx
 EXPOSE 80
