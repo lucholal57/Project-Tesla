@@ -4,19 +4,18 @@ FROM node:18 AS build
 # Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-
-# Copiar archivos de configuración de dependencias
+# Copiar solo archivos de dependencias primero (para aprovechar la caché)
 COPY package.json package-lock.json ./
 
 # Instalar dependencias sin guardar paquetes innecesarios
-RUN npm install --legacy-peer-deps
+RUN npm install --legacy-peer-deps --no-progress --quiet
 
-# Copiar todo el código fuente del proyecto Angular
-COPY . /app
-
+# Luego, copiar el resto del código fuente
+COPY . .
 
 # Compilar la aplicación para producción
 RUN npm run build --configuration=production
+
 
 # Etapa 2: Servir la aplicación con Nginx
 FROM nginx:alpine
