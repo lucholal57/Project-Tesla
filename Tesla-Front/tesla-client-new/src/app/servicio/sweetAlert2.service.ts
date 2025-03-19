@@ -56,4 +56,32 @@ showConfirmMessage(title: string, text: string) {
   });
 }
 
+
+showLoadingMessage() {
+  let timerInterval: any; // Declara timerInterval correctamente
+  return Swal.fire({
+    title: "Buscando ....!",
+    html: "Obteniendo Datos Filtrados <b></b> milliseconds.",
+    timer: 700,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading();
+      const timer = Swal.getPopup()?.querySelector("b"); // Usamos ? para evitar el null check
+      if (timer) { // Verifica que `timer` no sea null
+        timerInterval = setInterval(() => {
+          timer.textContent = `${Swal.getTimerLeft()}`;
+        }, 100);
+      }
+    },
+    willClose: () => {
+      clearInterval(timerInterval); // Asegúrate de limpiar el intervalo
+    }
+  }).then((result) => {
+    // Read more about handling dismissals below
+    if (result.dismiss === Swal.DismissReason.timer) {
+      console.log("I was closed by the timer");
+    }
+  });
+}
+
 }

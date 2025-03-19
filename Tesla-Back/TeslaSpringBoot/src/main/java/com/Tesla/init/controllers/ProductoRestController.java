@@ -72,4 +72,20 @@ public class ProductoRestController {
 
     }
 
+    // Buscar Producto por Código
+    @GetMapping(value = "/codigo/{codigo}")
+    public ResponseEntity<Producto> buscaProductoPorCodigo(@PathVariable String codigo) {
+        Optional<Producto> producto = productoService.buscaProductoPorCodigo(codigo);
+        return producto.map(ResponseEntity::ok) // Devuelve un 200 OK con el producto encontrado
+                .orElseGet(() -> ResponseEntity.notFound().build()); // Devuelve un 404 Not Found si no se encuentra el producto
+    }
+
+    //Lista todos los Productos bajos en stick
+    @GetMapping(value = "/stock-bajo")
+    public ResponseEntity<List<Producto>> obtenerProductosBajoStock() {
+        List<Producto> productosBajoStock = productoService.obtenerProductosBajoStock();
+        return ResponseEntity.ok(productosBajoStock);
+
+    }
+
 }

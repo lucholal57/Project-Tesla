@@ -8,9 +8,17 @@
 
   <ul>
     <li class="has-subnav">
-      <a href="#">
+      venta
+      <a [routerLink]="'/venta'">
         <i class="fa-solid fa-dollar-sign fa-2x icon-color"></i>
         <span class="nav-text">Generar Venta</span>
+      </a>
+    </li>
+
+    <li class="has-subnav">
+      <a [routerLink]="'/listar-venta'">
+        <i class="fa-solid fa-list fa-2x icon-color"></i> <!-- Usando icono de lista -->
+        <span class="nav-text">Listado Ventas</span>
       </a>
     </li>
 
@@ -22,18 +30,20 @@
     </li>
 
     <li class="has-subnav">
+      <a [routerLink]="'/listar-productos'">
+        <i class="fa-solid fa-list fa-2x icon-color"></i> <!-- Usando icono de lista -->
+        <span class="nav-text">Listado Productos</span>
+      </a>
+    </li>
+
+
+    <li class="has-subnav">
       <a [routerLink]="'/cargar-categorias'">
         <i class="fa-solid fa-box fa-2x icon-color"></i> <!-- Usando icono de etiquetas -->
         <span class="nav-text">Cargar Categorias</span>
       </a>
     </li>
 
-    <li class="has-subnav">
-      <a [routerLink]="'/listar-productos'">
-        <i class="fa-solid fa-list fa-2x icon-color"></i> <!-- Usando icono de lista -->
-        <span class="nav-text">Listado Productos</span>
-      </a>
-    </li>
 
     <li class="has-subnav">
       <a [routerLink]="'/listar-categorias'">
@@ -42,12 +52,33 @@
       </a>
     </li>
 
+
+
+
     <li class="has-subnav">
-      <a href="#">
+      <a [routerLink]="'/listar-productos/stock-bajo'">
         <i class="fa-solid fa-chart-line fa-2x icon-color"></i> <!-- Usando icono de gráfico -->
         <span class="nav-text">Control de Stock</span>
+        <span *ngIf="stockBajoCount > 0" class="badge">
+          {{ stockBajoCount }}
+        </span>
       </a>
     </li>
+
+    <li class="has-subnav">
+      <a [routerLink]="'/cierre-caja'">
+        <i class="fa-solid fa-tachometer-alt fa-2x icon-color"></i> <!-- Icono de cierre caja -->
+        <span class="nav-text">Cierre Caja</span>
+      </a>
+    </li>
+
+    <li class="has-subnav">
+      <a [routerLink]="'/dashboard'">
+        <i class="fa-solid fa-tachometer-alt fa-2x icon-color"></i> <!-- Icono de dashboard -->
+        <span class="nav-text">Dashboard</span>
+      </a>
+    </li>
+
   </ul>
 
   <ul class="logout">

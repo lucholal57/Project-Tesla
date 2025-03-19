@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.showSidebar = false;
-    
+
   }
 
   onSubmit() {
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
 
             this.sweetAlertService.showSuccessMessage("Bienvenido " + response.username, 1500).then(() => {
               // Redirigir a la página de productos
-              this.router.navigate(['cargar-productos']);
+              this.router.navigate(['venta']);
             });
           } else {
             this.loginForm.reset(); // Reiniciar formulario

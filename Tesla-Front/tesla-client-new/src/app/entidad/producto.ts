@@ -7,5 +7,6 @@ export interface Producto {
   descripcion: string;
   stock: number;
   precio: number;
+  precioCosto : number;
   categoria: Categoria;
 }

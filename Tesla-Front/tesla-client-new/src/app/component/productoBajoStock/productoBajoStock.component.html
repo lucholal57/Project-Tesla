@@ -11,7 +11,7 @@
 
     <div class="container-fluid text-center d-flex align-items-center justify-content-center">
       <div class="carga-container">
-        <h2 class="carga-title">Lista de Productos</h2>
+        <h2 class="carga-title">Lista de Productos Stock Bajo</h2>
 
         <!-- Filtros -->
         <div class="filtros">
@@ -78,7 +78,7 @@
               <td>{{ producto.nombre }}</td>
               <td>{{ producto.codigo }}</td>
               <td>{{ producto.descripcion }}</td>
-              <td>{{ producto.stock }}</td>
+              <td style="color: crimson; font-weight: bold;">{{ producto.stock }}</td>
               <td>{{ producto.precio | currency }}</td>
               <td>
                 {{ producto.categoria.categoria }}
