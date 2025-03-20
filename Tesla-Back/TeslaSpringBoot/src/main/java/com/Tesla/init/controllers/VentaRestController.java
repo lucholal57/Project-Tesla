@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping(value = "/api/venta", headers = "Accept=application/json")
 public class VentaRestController {
 
