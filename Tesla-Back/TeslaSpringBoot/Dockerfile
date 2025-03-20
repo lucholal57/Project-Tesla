@@ -1,12 +1,14 @@
-# Usa una imagen base de Maven y OpenJDK
-#FROM maven:3.9.6-openjdk-11 AS build
-
+# Usa una imagen base de Amazon Corretto 11 con Alpine
 FROM amazoncorretto:11-alpine-jdk
 
-# Copia los archivos del proyecto
+# Instalación de utilidades para debug
+RUN apk update && apk add --no-cache curl postgresql-client
+
+# Copia el archivo JAR generado
 COPY target/TeslaSpringBoot-0.0.1-SNAPSHOT.jar app.jar
 
-EXPOSE 80
+# Expone el puerto 8081
+EXPOSE 8081
 
 # Comando para ejecutar la aplicación
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "/app.jar", "--server.port=8081"]

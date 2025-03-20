@@ -3,6 +3,7 @@ com/Tesla/init/services/ProductoService.class
 com/Tesla/init/models/Producto.class
 com/Tesla/init/TeslaSpringBootApplication.class
 com/Tesla/init/controllers/ProductoRestController.class
+com/Tesla/init/config/WebSecurityConfig.class
 com/Tesla/init/TeslaSpringBootApplication$1.class
 com/Tesla/init/models/DetalleVenta.class
 com/Tesla/init/repositories/ProductoRepository.class
