@@ -27,15 +27,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // Especifica los orígenes permitidos
-        configuration.setAllowedOriginPatterns(Arrays.asList(
+        // Especifica los orígenes permitidos explícitamente
+        configuration.setAllowedOrigins(Arrays.asList(
                 "http://localhost:4200",      // Desarrollo local
-                "https://project-tesla-render.onrender.com"  // Despliegue en Render
+                "https://project-tesla.onrender.com"  // Despliegue en Render
         ));
 
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowedHeaders(Arrays.asList(
+                "Authorization",
+                "Cache-Control",
+                "Content-Type",
+                "X-Requested-With",
+                "Accept",
+                "Origin"
+        ));
         configuration.setAllowCredentials(true);
+        configuration.setExposedHeaders(Arrays.asList("Authorization", "Content-Type"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
