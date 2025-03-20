@@ -16,4 +16,5 @@
 /home/luciano/PROYECTOS PERSONALES PROGRAMACION/Project-Tesla/Tesla-Back/TeslaSpringBoot/src/main/java/com/Tesla/init/repositories/UsuarioRepository.java
 /home/luciano/PROYECTOS PERSONALES PROGRAMACION/Project-Tesla/Tesla-Back/TeslaSpringBoot/src/main/java/com/Tesla/init/TeslaSpringBootApplication.java
 /home/luciano/PROYECTOS PERSONALES PROGRAMACION/Project-Tesla/Tesla-Back/TeslaSpringBoot/src/main/java/com/Tesla/init/controllers/ProductoRestController.java
+/home/luciano/PROYECTOS PERSONALES PROGRAMACION/Project-Tesla/Tesla-Back/TeslaSpringBoot/src/main/java/com/Tesla/init/config/CorsGlobalFilter.java
 /home/luciano/PROYECTOS PERSONALES PROGRAMACION/Project-Tesla/Tesla-Back/TeslaSpringBoot/src/main/java/com/Tesla/init/models/Venta.java
