@@ -6,7 +6,6 @@
 /home/luciano/PROYECTOS PERSONALES PROGRAMACION/Project-Tesla/Tesla-Back/TeslaSpringBoot/src/main/java/com/Tesla/init/controllers/UsuarioRestController.java
 /home/luciano/PROYECTOS PERSONALES PROGRAMACION/Project-Tesla/Tesla-Back/TeslaSpringBoot/src/main/java/com/Tesla/init/models/Usuario.java
 /home/luciano/PROYECTOS PERSONALES PROGRAMACION/Project-Tesla/Tesla-Back/TeslaSpringBoot/src/main/java/com/Tesla/init/models/Producto.java
-/home/luciano/PROYECTOS PERSONALES PROGRAMACION/Project-Tesla/Tesla-Back/TeslaSpringBoot/src/main/java/com/Tesla/init/config/WebConfig.java
 /home/luciano/PROYECTOS PERSONALES PROGRAMACION/Project-Tesla/Tesla-Back/TeslaSpringBoot/src/main/java/com/Tesla/init/controllers/VentaRestController.java
 /home/luciano/PROYECTOS PERSONALES PROGRAMACION/Project-Tesla/Tesla-Back/TeslaSpringBoot/src/main/java/com/Tesla/init/services/UsuarioService.java
 /home/luciano/PROYECTOS PERSONALES PROGRAMACION/Project-Tesla/Tesla-Back/TeslaSpringBoot/src/main/java/com/Tesla/init/models/DetalleVenta.java
@@ -16,5 +15,4 @@
 /home/luciano/PROYECTOS PERSONALES PROGRAMACION/Project-Tesla/Tesla-Back/TeslaSpringBoot/src/main/java/com/Tesla/init/repositories/UsuarioRepository.java
 /home/luciano/PROYECTOS PERSONALES PROGRAMACION/Project-Tesla/Tesla-Back/TeslaSpringBoot/src/main/java/com/Tesla/init/TeslaSpringBootApplication.java
 /home/luciano/PROYECTOS PERSONALES PROGRAMACION/Project-Tesla/Tesla-Back/TeslaSpringBoot/src/main/java/com/Tesla/init/controllers/ProductoRestController.java
-/home/luciano/PROYECTOS PERSONALES PROGRAMACION/Project-Tesla/Tesla-Back/TeslaSpringBoot/src/main/java/com/Tesla/init/config/CorsGlobalFilter.java
 /home/luciano/PROYECTOS PERSONALES PROGRAMACION/Project-Tesla/Tesla-Back/TeslaSpringBoot/src/main/java/com/Tesla/init/models/Venta.java

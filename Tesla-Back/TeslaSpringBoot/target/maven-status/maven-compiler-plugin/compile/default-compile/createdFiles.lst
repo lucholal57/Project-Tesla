@@ -8,7 +8,6 @@ com/Tesla/init/models/DetalleVenta.class
 com/Tesla/init/repositories/ProductoRepository.class
 com/Tesla/init/repositories/VentaRepository.class
 com/Tesla/init/controllers/UsuarioRestController.class
-com/Tesla/init/config/CorsGlobalFilter.class
 com/Tesla/init/services/VentaService.class
 com/Tesla/init/controllers/VentaRestController.class
 com/Tesla/init/controllers/CategoriaRestController.class
@@ -17,5 +16,4 @@ com/Tesla/init/models/Categoria.class
 com/Tesla/init/services/CategoriaService.class
 com/Tesla/init/repositories/UsuarioRepository.class
 com/Tesla/init/services/UsuarioService.class
-com/Tesla/init/config/WebConfig.class
 com/Tesla/init/models/Usuario.class
