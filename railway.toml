@@ -1,0 +1,9 @@
+[build]
+builder = "Docker"
+
+[service]
+name = "tesla-backend"
+path = "Tesla-Back/TeslaSpringBoot"
+dockerfile = "Tesla-Back/TeslaSpringBoot/Dockerfile"
+start_command = "java -jar /app.jar"
+port = 8080
