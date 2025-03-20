@@ -1,6 +1,3 @@
-[build]
-  command = "cd Tesla-Back/TeslaSpringBoot && ./mvnw clean package"
-
 [service]
   name = "tesla-backend"
   path = "Tesla-Back/TeslaSpringBoot"
