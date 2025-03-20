@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/api/producto", headers = "Accept=application/json")
-@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 public class ProductoRestController {
 
     @Autowired

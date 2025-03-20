@@ -15,10 +15,10 @@ public class WebConfig implements WebMvcConfigurer{
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOriginPattern("*");
-        config.addAllowedMethod("*");
-        config.addAllowedHeader("*");
         config.setAllowCredentials(true);
+        config.addAllowedOriginPattern("*");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
         config.addExposedHeader("Authorization");
         config.addExposedHeader("Access-Control-Allow-Origin");
         config.addExposedHeader("Access-Control-Allow-Credentials");
