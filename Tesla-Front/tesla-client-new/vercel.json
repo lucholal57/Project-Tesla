@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "public": "dist/tesla-client-new/browser",
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
