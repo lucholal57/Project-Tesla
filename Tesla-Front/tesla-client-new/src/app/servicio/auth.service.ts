@@ -15,12 +15,18 @@ export class AuthService {
 constructor(private http: HttpClient, private router: Router) { }
 
 login(usuario: Usuario): Observable<any> {
-  return this.http.post<any>(this.apiUrl + 'usuario/login', usuario).pipe(
+  return this.http.post<any>(this.apiUrl + 'usuario/login', usuario, {
+    headers: {
+      'Content-Type': 'application/json',  // Asegura que se está enviando JSON
+      'Access-Control-Allow-Origin': '*'  // Añadir este encabezado si es necesario para que el navegador lo acepte
+    }
+  }).pipe(
     tap(response => {
-      // Suponiendo que el backend devuelve un token o algún valor
       if (response) {
-        // Guarda un valor que indique que el usuario está autenticado
-        localStorage.setItem('isAuthenticated', 'true');
+        if (response.token) {
+          localStorage.setItem('isAuthenticated', 'true');
+          localStorage.setItem('authToken', response.token);  // Guarda el token para futuras solicitudes
+        }
       }
     })
   );
