@@ -16,4 +16,5 @@ com/Tesla/init/models/Categoria.class
 com/Tesla/init/services/CategoriaService.class
 com/Tesla/init/repositories/UsuarioRepository.class
 com/Tesla/init/services/UsuarioService.class
+com/Tesla/init/config/WebConfig.class
 com/Tesla/init/models/Usuario.class
