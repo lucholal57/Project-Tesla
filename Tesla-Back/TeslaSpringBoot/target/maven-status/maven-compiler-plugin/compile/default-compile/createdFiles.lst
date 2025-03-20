@@ -10,7 +10,6 @@ com/Tesla/init/repositories/ProductoRepository.class
 com/Tesla/init/repositories/VentaRepository.class
 com/Tesla/init/controllers/UsuarioRestController.class
 com/Tesla/init/services/VentaService.class
-com/Tesla/init/config/CorsConfig.class
 com/Tesla/init/controllers/VentaRestController.class
 com/Tesla/init/controllers/CategoriaRestController.class
 com/Tesla/init/repositories/CategoriaRepository.class
