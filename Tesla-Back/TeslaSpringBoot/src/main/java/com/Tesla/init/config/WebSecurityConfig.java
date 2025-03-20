@@ -1,5 +1,6 @@
 package com.Tesla.init.config;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
 
 import java.util.Arrays;
 
@@ -27,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // Especifica los orígenes permitidos explícitamente
+        // Permitir orígenes específicos
         configuration.setAllowedOrigins(Arrays.asList(
                 "http://localhost:4200",      // Desarrollo local
                 "https://project-tesla.onrender.com"  // Despliegue en Render
@@ -42,11 +45,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "Accept",
                 "Origin"
         ));
-        configuration.setAllowCredentials(true);
         configuration.setExposedHeaders(Arrays.asList("Authorization", "Content-Type"));
+        configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
+    }
+
+    @Bean
+    public CorsFilter corsFilter() {
+        CorsConfigurationSource source = corsConfigurationSource();
+        return new CorsFilter(source);
     }
 }
