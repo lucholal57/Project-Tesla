@@ -4,18 +4,20 @@ FROM node:18 AS build
 # Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiar solo archivos de dependencias primero (para aprovechar la caché)
+# Copiar archivos de configuración de dependencias
 COPY package.json package-lock.json ./
 
-# Instalar dependencias sin guardar paquetes innecesarios
-RUN npm install --legacy-peer-deps --no-progress --quiet
+# Instalar dependencias
+RUN npm install --legacy-peer-deps
 
-# Luego, copiar el resto del código fuente
+# Copiar el resto del código fuente del proyecto
 COPY . .
 
 # Compilar la aplicación para producción
 RUN npm run build --configuration=production
 
+# Verificar que el build se haya hecho correctamente
+RUN ls -l /app/dist/tesla-client-new/browser
 
 # Etapa 2: Servir la aplicación con Nginx
 FROM nginx:alpine
@@ -24,9 +26,9 @@ FROM nginx:alpine
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copiar la aplicación Angular generada en la etapa de build
-COPY --from=build /app/dist/tesla-client-new/. /usr/share/nginx/html
+COPY --from=build /app/dist/tesla-client-new/browser /usr/share/nginx/html
 
-# Copiar configuración de Nginx **a la ubicación correcta**
+# Copiar configuración personalizada de Nginx para manejar rutas Angular
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Exponer el puerto en el que corre Nginx
@@ -34,5 +36,3 @@ EXPOSE 80
 
 # Comando por defecto para ejecutar Nginx
 CMD ["nginx", "-g", "daemon off;"]
-
-
