@@ -2,6 +2,7 @@ package com.Tesla.init.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -21,6 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/**").permitAll()  // Permitir todas las rutas de la API
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()  // Permitir OPTIONS
                 .anyRequest().permitAll();           // Permitir todas las demás solicitudes
     }
 
